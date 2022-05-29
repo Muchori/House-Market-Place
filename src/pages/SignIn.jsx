@@ -8,6 +8,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import OAuth from '../components/OAuth'
 
 function SignIn() {
   const [showPassword, setShowPassword] = useState(false)
@@ -56,7 +57,7 @@ function SignIn() {
           <input
             type='email'
             className='emailInput'
-            placeholder='     Email'
+            placeholder='Email'
             id='email'
             value={email}
             onChange={onChange}
@@ -66,7 +67,7 @@ function SignIn() {
             <input
               type={showPassword ? 'text' : 'password'}
               className='passwordInput'
-              placeholder='      Password'
+              placeholder='Password'
               id='password'
               value={password}
               onChange={onChange}
@@ -91,7 +92,7 @@ function SignIn() {
             </button>
           </div>
         </form>
-        {/* Google oauth */}
+        <OAuth />
         <Link to='/sign-up' className='registerLink'>
           Sign Up
         </Link>

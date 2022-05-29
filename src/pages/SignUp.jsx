@@ -14,6 +14,7 @@ import { doc, setDoc, serverTimestamp } from 'firebase/firestore'
 
 import { ReactComponent as ArrowRightIcon } from '../assets/svg/keyboardArrowRightIcon.svg'
 import visibilityIcon from '../assets/svg/visibilityIcon.svg'
+import OAuth from '../components/OAuth'
 
 function SignUp() {
   const [showPassword, setShowPassword] = useState(false)
@@ -73,7 +74,7 @@ function SignUp() {
           <input
             type='text'
             className='nameInput'
-            placeholder='     Name'
+            placeholder='Name'
             id='name'
             value={name}
             onChange={onChange}
@@ -81,7 +82,7 @@ function SignUp() {
           <input
             type='email'
             className='emailInput'
-            placeholder='     Email'
+            placeholder='Email'
             id='email'
             value={email}
             onChange={onChange}
@@ -91,7 +92,7 @@ function SignUp() {
             <input
               type={showPassword ? 'text' : 'password'}
               className='passwordInput'
-              placeholder='      Password'
+              placeholder='Password'
               id='password'
               value={password}
               onChange={onChange}
@@ -116,7 +117,7 @@ function SignUp() {
             </button>
           </div>
         </form>
-        {/* Google oauth */}
+        <OAuth />
         <Link to='/sign-in' className='registerLink'>
           Sign In
         </Link>

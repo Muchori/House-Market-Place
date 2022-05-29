@@ -15,7 +15,7 @@ import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner'
 import ListingItem from '../components/ListingItem'
 
-function Offers() {
+function Category() {
   const [listings, setListings] = useState(null)
   const [loading, setLoading] = useState(true)
   const params = useParams()
@@ -29,7 +29,7 @@ function Offers() {
         //create a query
         const q = query(
           listingsRef,
-          where('offer', '==', true),
+          where('type', '==', params.categoryName),
           orderBy('timestamp', 'desc'),
           limit(10)
         )
@@ -39,7 +39,6 @@ function Offers() {
 
         const listings = []
         querySnap.forEach((doc) => {
-          console.log(doc.data())
           return listings.push({
             id: doc.id,
             data: doc.data(),
@@ -48,17 +47,20 @@ function Offers() {
         setListings(listings)
         setLoading(false)
       } catch (error) {
-        console.log(error)
         toast.error('Could not fecth listings')
       }
     }
     fetchListings()
-  }, [])
+  }, [params.categoryName])
 
   return (
     <div className='category'>
       <header>
-        <p className='pageHeader'>Offers</p>
+        <p className='pageHeader'>
+          {params.categoryName === 'rent'
+            ? 'Places for Rent'
+            : 'Place for Sale'}
+        </p>
       </header>
       {loading ? (
         <Spinner />
@@ -77,10 +79,10 @@ function Offers() {
           </main>
         </>
       ) : (
-        <p>No Listings offers Available</p>
+        <p>No Listings {params.categoryName} Available</p>
       )}
     </div>
   )
 }
 
-export default Offers
+export default Category
